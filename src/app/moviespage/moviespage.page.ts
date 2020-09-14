@@ -15,6 +15,7 @@ export class MoviespagePage implements OnInit {
   LocationList = [];
   language = "";
   location = "";
+  User=localStorage.getItem('username');
   constructor(private http:HttpClient,private appComp:AppComponent,private router:Router) { }
 
   ngOnInit() {
