@@ -6,6 +6,12 @@
 
 <ion-content>
   <div id="container">
-
+      <img [src]="Moviedata.Poster" style="width: 200px;height:350px;">
+      <p>{{Moviedata.Title}}</p>
+      <p>Description: {{Moviedata.Plot}}</p>
+      <p>Language: {{Moviedata.Language}}</p>
+      <p>Location: {{Moviedata.Location}}</p>
+      <p>IMDB Ratings: {{Moviedata.imdbRating}}</p>
+  <ion-button >Book Tickets</ion-button>
 </div>
 </ion-content>

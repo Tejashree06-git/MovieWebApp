@@ -10,6 +10,7 @@ import { AppComponent } from '../app.component';
 })
 export class MoviedetailsPage implements OnInit {
 movieTitle = "";
+Moviedata = [];
   constructor(private router:Router,private http:HttpClient,private appComp:AppComponent) { }
 
   ngOnInit() {
@@ -22,6 +23,7 @@ displayMovieDetails()
   let url = this.appComp.apiUrl+"?imdbID="+movieID;
   this.http.get(url).subscribe(data => {
     console.log(data);
+    this.Moviedata = data[0];
     this.movieTitle = data[0].Title;
   },
   err => {
