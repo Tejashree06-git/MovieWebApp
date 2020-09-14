@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-moviespage',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./moviespage.page.scss'],
 })
 export class MoviespagePage implements OnInit {
-
-  constructor() { }
+  movieList:any;
+  constructor(private http:HttpClient,private appComp:AppComponent) { }
 
   ngOnInit() {
+    this.getMovieList();
+  }
+  getMovieList() {
+    this.http.get(this.appComp.apiUrl).subscribe(data => {
+      console.log(data);
+      this.movieList = data;
+    },
+    err => {
+    console.log(err);
+    });
   }
 
 }

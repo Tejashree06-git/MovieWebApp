@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  apiUrl= "http://localhost:3000/movies";
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
