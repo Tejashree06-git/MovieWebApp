@@ -12,6 +12,8 @@ export class MoviespagePage implements OnInit {
   allMovies:any;
   languageList = [];
   LocationList = [];
+  language = "";
+  location = "";
   constructor(private http:HttpClient,private appComp:AppComponent) { }
 
   ngOnInit() {
@@ -19,14 +21,26 @@ export class MoviespagePage implements OnInit {
   }
 
   selectLanguage(ev){
-alert(ev.target.value);
-  }
-  selectLocation(ev){
-    alert(ev.target.value);
+    this.language = ev.detail.value;
+    this.getMovieList();
 
   }
+  selectLocation(ev){
+    this.location = ev.detail.value;
+    this.getMovieList();
+  }
   getMovieList() {
-    this.http.get(this.appComp.apiUrl).subscribe(data => {
+    let url = this.appComp.apiUrl;
+    if(this.language!="" && (this.location == "" || this.location == "All"))
+    url = this.appComp.apiUrl+"?Language="+this.language;
+    else if(this.location !="" && (this.language == "" || this.language == "All"))
+    url =this.appComp.apiUrl+"?Location="+this.location;
+    else if((this.language!="" && this.location !="") && (this.language!="All" && this.location !="All"))
+    url =this.appComp.apiUrl+"?Language="+this.language+"&Location="+this.location;    
+    else if(this.language == "All" && this.location == "All")
+    url = this.appComp.apiUrl;
+
+    this.http.get(url).subscribe(data => {
       console.log(data);
       this.movieList = data;
       this.allMovies = data;

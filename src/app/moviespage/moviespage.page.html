@@ -12,13 +12,15 @@
 <ion-col size="3">
   <ion-label>Language:</ion-label>
   <ion-select [interfaceOptions]="customAlertOptionslanguage" interface="alert"  placeholder="Language" (ionChange)="selectLanguage($event)">
-    <ion-select-option *ngFor="let m of languageList" value="m">{{m}}</ion-select-option>  
+    <ion-select-option value="All">All</ion-select-option>  
+    <ion-select-option *ngFor="let m of languageList" value="{{m}}">{{m}}</ion-select-option>  
   </ion-select>
 </ion-col>
 <ion-col size="3">
   <ion-label>Location:</ion-label>
   <ion-select [interfaceOptions]="customAlertOptionslocation" interface="alert"  placeholder="Location" (ionChange)="selectLocation($event)">
-    <ion-select-option *ngFor="let m of LocationList" value="m">{{m}}</ion-select-option>  
+    <ion-select-option value="All">All</ion-select-option>  
+    <ion-select-option *ngFor="let m of LocationList" value="{{m}}">{{m}}</ion-select-option>  
   </ion-select>
 </ion-col>
 </ion-row>
