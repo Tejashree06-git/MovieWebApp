@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { AppComponent } from '../app.component';
 export class MoviedetailsPage implements OnInit {
 movieTitle = "";
 Moviedata = [];
-  constructor(private router:Router,private http:HttpClient,private appComp:AppComponent,private alertCntrl:AlertController) { }
+  constructor(private toastController:ToastController,private router:Router,private http:HttpClient,private appComp:AppComponent,private alertCntrl:AlertController) { }
 
   ngOnInit() {
     this.displayMovieDetails();
@@ -47,17 +47,25 @@ async bookTickets() {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
           }
         }, {
           text: 'Book',
           handler: () => {
-            console.log('Confirm Ok');
+            this.presentToast();
           }
         }
       ]
     });
 
     await alert.present();
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Hurray! Tickets Booked!!.',
+      duration: 5000,
+      position: 'bottom',
+
+    });
+    toast.present();
   }
 }
