@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-moviespage',
@@ -14,7 +15,7 @@ export class MoviespagePage implements OnInit {
   LocationList = [];
   language = "";
   location = "";
-  constructor(private http:HttpClient,private appComp:AppComponent) { }
+  constructor(private http:HttpClient,private appComp:AppComponent,private router:Router) { }
 
   ngOnInit() {
     this.getMovieList();
@@ -79,4 +80,9 @@ export class MoviespagePage implements OnInit {
 
     }
   }
+  bookMyMovie(id)
+    {
+      localStorage.setItem('movieID',id);
+      this.router.navigate(['moviedetails']);
+    }
 }
